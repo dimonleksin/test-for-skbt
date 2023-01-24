@@ -1,7 +1,14 @@
+#Указываем базовый образ
 FROM ubuntu
+#Ставим ява машину curl и tar
 RUN apt update && apt install -y default-jre curl tar 
+#Создаем каталог, где будет выполняться kafka
 RUN mkdir /opt/kafka
+#Скачиваем
 RUN curl "https://downloads.apache.org/kafka/3.3.2/kafka_2.12-3.3.2.tgz" -o /opt/kafka/kafka.tgz
+#Распаковываем и переносим в наш каталог
 RUN tar -xvzf /opt/kafka/kafka.tgz && rm -rf /opt/kafka/kafka.tgz && mv /kafka*/* /opt/kafka
+#Копируем заранее написанный конфиг
 COPY server.properties /opt/kafka/config/server.properties
+#Запускаем
 ENTRYPOINT /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties 
