@@ -1,9 +1,12 @@
 version: '3'
 services:
   zookeeper1:
+#Собираем и запускаем образ и подкаталога
     build: ./zookeeper 
+#Пробрасываем в хостовую машину порт(для каждого образа свой)    
     ports:
       - 20181:2181
+ #Объединяем в одну сеть
     networks:
       - lan
     environment:
@@ -34,11 +37,13 @@ services:
       - 9092:9092
     networks:
       - lan
+ #Зависимость от всех машин zookeeper(они должны стартовать первыми)
     depends_on:
       - zookeeper1
       - zookeeper2
       - zookeeper3
     environment:
+#Задаем ID брокера(уникальный для каждого образа)
       KAFKA_BROKER_ID: 0 
   kafka2:
     build: ./kafka
