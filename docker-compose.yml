@@ -1,3 +1,4 @@
+#Версия docker-compose
 version: '3'
 services:
   zookeeper1:
@@ -69,5 +70,6 @@ services:
       - zookeeper3
     environment:
       KAFKA_BROKER_ID: 2
+#Объявляем сеть, к которой подключены наши сервисы
 networks:
   lan:
