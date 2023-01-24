@@ -1,0 +1,68 @@
+version: '3'
+services:
+  zookeeper1:
+    build: ./zookeeper 
+    ports:
+      - 20181:2181
+    networks:
+      - lan
+    environment:
+      ZOOKEEPER_TICK_TIME: 2000
+  zookeeper2:
+    build: ./zookeeper
+    ports:
+      - 21181:2181
+    networks:
+      - lan
+    depends_on:
+      - zookeeper1
+    environment:
+      ZOOKEEPER_TICK_TIME: 2000
+  zookeeper3:
+    build: ./zookeeper
+    ports:
+      - 22181:2181
+    networks:
+      - lan
+    depends_on:
+      - zookeeper1
+    environment:
+      ZOOKEEPER_TICK_TIME: 2000
+  kafka1:
+    build: ./kafka 
+    ports:
+      - 9092:9092
+    networks:
+      - lan
+    depends_on:
+      - zookeeper1
+      - zookeeper2
+      - zookeeper3
+    environment:
+      KAFKA_BROKER_ID: 0 
+  kafka2:
+    build: ./kafka
+    ports:
+      - 9093:9092
+    networks:
+      - lan
+    depends_on:
+      - zookeeper1
+      - zookeeper2
+      - zookeeper3
+    environment:
+      KAFKA_BROKER_ID: 1
+  kafka3:
+    build: ./kafka
+    ports:
+      - 9094:9092
+    networks:
+      - lan
+    depends_on:
+      - zookeeper1
+      - zookeeper2
+      - zookeeper3
+    environment:
+      KAFKA_BROKER_ID: 2
+networks:
+  lan:
