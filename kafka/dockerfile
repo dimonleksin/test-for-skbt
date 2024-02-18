@@ -5,7 +5,7 @@ RUN apt update && apt install -y default-jre curl tar
 #Создаем каталог, где будет выполняться kafka
 RUN mkdir /opt/kafka; mkdir /opt/kafka/data
 #Скачиваем
-RUN curl "https://downloads.apache.org/kafka/3.3.2/kafka_2.12-3.3.2.tgz" -o /opt/kafka/kafka.tgz
+RUN curl "https://downloads.apache.org/kafka/3.6.1/kafka_2.13-3.6.1.tgz" -o /opt/kafka/kafka.tgz
 #Распаковываем и переносим в наш каталог
 RUN tar -xvzf /opt/kafka/kafka.tgz && rm -rf /opt/kafka/kafka.tgz && mv /kafka*/* /opt/kafka
 #Копируем заранее написанный конфиг
