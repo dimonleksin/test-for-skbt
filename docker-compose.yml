@@ -30,7 +30,7 @@ services:
     image: kfk:1
     container_name: kafka2
     ports:
-      - 9093:9092
+      - 9093:9093
     networks:
       - lan
     depends_on:
@@ -42,7 +42,7 @@ services:
     image: kfk:1
     container_name: kafka3
     ports:
-      - 9094:9092
+      - 9094:9094
     networks:
       - lan
     depends_on:
