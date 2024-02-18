@@ -10,9 +10,9 @@ services:
     networks:
       - lan
     volumes:
-      - zookeeper:/opt/zookeeper/data
+      - zookeeper:/opt/kafka/data
       # - ./zookeeper1/myid:/opt/zookeeper/data/myid
-      - ./zookeeper1/zookeeper.properties:/opt/zookeeper/config/server.properties
+      - ./zookeeper1/zookeeper.properties:/opt/kafka/config/server.properties
   kafka1:
     image: kfk:1
     container_name: kafka1
