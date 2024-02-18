@@ -23,8 +23,11 @@ services:
  #Зависимость от всех машин zookeeper(они должны стартовать первыми)
     depends_on:
       - zookeeper1
+    environment:
+      - KAFKA_OPTS="-Djava.security.auth.login.config=opt/kafka/config/kafka_server.jaas"
     volumes:
       - ./kafka1/server.properties:/opt/kafka/config/server.properties
+      - ./kafka1/kafka_server.jaas:/opt/kafka/config/kafka_server.jaas
       - kafka_data_1:/opt/kafka/data
   kafka2:
     image: kfk:1
@@ -35,8 +38,11 @@ services:
       - lan
     depends_on:
       - zookeeper1
+    environment:
+      - KAFKA_OPTS="-Djava.security.auth.login.config=opt/kafka/config/kafka_server.jaas"
     volumes:
       - ./kafka2/server.properties:/opt/kafka/config/server.properties
+      - ./kafka2/kafka_server.jaas:/opt/kafka/config/kafka_server.jaas
       - kafka_data_2:/opt/kafka/data
   kafka3:
     image: kfk:1
@@ -47,7 +53,10 @@ services:
       - lan
     depends_on:
       - zookeeper1
+    environment:
+      - KAFKA_OPTS="-Djava.security.auth.login.config=opt/kafka/config/kafka_server.jaas"
     volumes:
+      - ./kafka3/kafka_server.jaas:/opt/kafka/config/kafka_server.jaas
       - ./kafka3/server.properties:/opt/kafka/config/server.properties
       - kafka_data_3:/opt/kafka/data
 #Объявляем сеть, к которой подключены наши сервисы
