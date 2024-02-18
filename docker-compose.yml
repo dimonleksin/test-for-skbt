@@ -36,7 +36,7 @@ services:
     depends_on:
       - zookeeper1
     volumes:
-      - kafka2/server.properties:/opt/kafka/config/server.properties
+      - ./kafka2/server.properties:/opt/kafka/config/server.properties
       - kafka_data_2:/opt/kafka/data
   kafka3:
     image: kfk:1
@@ -48,7 +48,7 @@ services:
     depends_on:
       - zookeeper1
     volumes:
-      - kafka3/server.properties:/opt/kafka/config/server.properties
+      - ./kafka3/server.properties:/opt/kafka/config/server.properties
       - kafka_data_3:/opt/kafka/data
 #Объявляем сеть, к которой подключены наши сервисы
 networks:
