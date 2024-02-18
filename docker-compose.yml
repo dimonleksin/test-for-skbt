@@ -12,7 +12,7 @@ services:
     volumes:
       - zookeeper:/opt/zookeeper/data
       # - ./zookeeper1/myid:/opt/zookeeper/data/myid
-      - ./zookeeper1/server.config:/opt/zookeeper/config/server.properties
+      - ./zookeeper1/zookeeper.properties:/opt/zookeeper/config/server.properties
   kafka1:
     image: kfk:1
     container_name: kafka1
@@ -27,7 +27,7 @@ services:
       - ./kafka1/server.properties:/opt/kafka/config/server.properties
       - kafka_data_1:/opt/kafka/data
   kafka2:
-    image: kfk:2
+    image: kfk:1
     container_name: kafka2
     ports:
       - 9093:9092
@@ -40,7 +40,7 @@ services:
       - kafka_data_2:/opt/kafka/data
   kafka3:
     image: kfk:1
-    container_name: kafka2
+    container_name: kafka3
     ports:
       - 9094:9092
     networks:
