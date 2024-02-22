@@ -67,7 +67,7 @@ services:
     container_name: kafka4
     ports:
       - 9095:9095
-      - 9012:9012
+      # - 9012:9012
     networks:
       - lan
     depends_on:
