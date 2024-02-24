@@ -1,5 +1,5 @@
 #Указываем базовый образ
-FROM ubuntu
+FROM ubuntu:my
 #Ставим ява машину curl и tar
 RUN apt update && apt install -y default-jre curl tar 
 #Создаем каталог, где будет выполняться kafka

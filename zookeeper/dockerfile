@@ -1,5 +1,5 @@
 #Задаем базовый образ(ОС)
-FROM ubuntu
+FROM ubuntu:my
 #Устанавливаем Ява машину curl и tar чтобы скачать kafka
 RUN apt update && apt install -y default-jre curl tar
 #Создаем каталог, в котором kafka будет работать
